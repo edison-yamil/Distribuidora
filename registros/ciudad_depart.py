@@ -1,0 +1,415 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
+from gi.repository.Gtk import ListStore
+from gi.repository.Gdk import ModifierType
+from clases import mensajes as Mens
+from clases import operaciones as Op
+
+
+class funcion_abm:
+
+    def __init__(self, edit, origen):
+        self.editando = edit
+        self.nav = origen
+
+        arch = Op.archivo("abm_ciudad_depart")
+        self.obj = arch.get_object
+
+        self.obj("ventana").set_position(1)
+        self.obj("ventana").set_modal(True)
+
+        edit = "Creando" if not self.editando else "Editando"
+        self.obj("ventana").set_title(edit + " Registro de " + self.nav.titulo)
+        Mens.boton_guardar_cancelar(self.obj("btn_guardar"), self.obj("btn_cancelar"))
+
+        self.obj("txt_00").set_max_length(10)
+        self.obj("txt_01").set_max_length(50)
+        self.obj("txt_02").set_max_length(10)
+        self.obj("txt_03").set_max_length(10)
+
+        self.obj("txt_00").set_tooltip_text("Ingrese el Código de " + self.nav.titulo)
+        self.obj("txt_01").set_tooltip_text("Ingrese el Nombre de " + self.nav.titulo)
+        self.obj("txt_02").set_tooltip_text(Mens.usar_boton("el País de " + self.nav.titulo))
+        self.obj("txt_03").set_tooltip_text(Mens.usar_boton("el Departamento, Provincia, Estado de " + self.nav.titulo))
+        self.obj("txt_00").grab_focus()
+
+        if self.nav.tabla == "departamentos":
+            self.obj("hbox4").set_visible(False)
+
+        self.txt_cod_pais, self.txt_des_pais = self.obj("txt_02"), self.obj("txt_02_1")
+        self.txt_cod_dep, self.txt_des_dep = self.obj("txt_03"), self.obj("txt_03_1")
+        arch.connect_signals(self)
+
+        if self.editando:
+            seleccion, iterador = self.nav.obj("grilla").get_selection().get_selected()
+            self.cond = str(seleccion.get_value(iterador, 0))
+            nombre = seleccion.get_value(iterador, 1)
+            self.cond_pais = seleccion.get_value(iterador, 2)
+            pais = seleccion.get_value(iterador, 3)
+
+            self.obj("txt_00").set_text(self.cond)
+            self.obj("txt_01").set_text(nombre)
+            self.obj("txt_02").set_text(str(self.cond_pais))
+            self.obj("txt_02_1").set_text(pais)
+
+            if self.nav.tabla == "ciudades":
+                self.cond_dep = seleccion.get_value(iterador, 4)
+                dep = seleccion.get_value(iterador, 5)
+
+                self.obj("txt_03").set_text(str(self.cond_dep))
+                self.obj("txt_03_1").set_text(dep)
+
+        self.nav.obj("grilla").get_selection().unselect_all()
+        self.nav.obj("barraestado").push(0, "")
+        self.obj("ventana").show()
+
+    def on_btn_guardar_clicked(self, objeto):
+        v1 = self.obj("txt_00").get_text()
+        v2 = self.obj("txt_01").get_text()
+        v3 = self.obj("txt_02").get_text()  # País
+
+        if self.nav.tabla == "ciudades":
+            v4 = self.obj("txt_03").get_text()  # Departamento
+
+            sql = "" if not self.editando else str(self.cond_pais) + ", " + \
+                str(self.cond_dep) + ", " + str(self.cond) + ", "
+            sql += v3 + ", " + v4 + ", " + v1 + ", '" + v2 + "'"
+
+        else:  # Departamentos
+            sql = "" if not self.editando else str(self.cond_pais) + ", " + str(self.cond) + ", "
+            sql += v3 + ", " + v1 + ", '" + v2 + "'"
+
+        # Establece la conexión con la Base de Datos
+        conexion = Op.conectar(self.nav.datos_conexion)
+
+        if not self.editando:
+            Op.insertar(conexion, self.nav.tabla, sql)
+        else:
+            Op.modificar(conexion, self.nav.tabla, sql)
+
+        conexion.commit()
+        conexion.close()  # Finaliza la conexión
+
+        self.obj("ventana").destroy()
+        cargar_grilla(self.nav)
+
+    def on_btn_cancelar_clicked(self, objeto):
+        self.obj("ventana").destroy()
+
+    def on_btn_departamento_clicked(self, objeto):
+        from clases.llamadas import departamentos
+        departamentos(self.nav.datos_conexion, self)
+
+    def on_btn_pais_clicked(self, objeto):
+        from clases.llamadas import paises
+        paises(self.nav.datos_conexion, self)
+
+    def verificacion(self, objeto):
+        if len(self.obj("txt_00").get_text()) == 0 or len(self.obj("txt_01").get_text()) == 0 \
+        or len(self.obj("txt_02").get_text()) == 0:
+            estado = False
+        else:
+            if Op.comprobar_numero(int, self.obj("txt_00"), "Código", self.obj("barraestado")) \
+            and Op.comprobar_numero(int, self.obj("txt_02"), "Cód. Pais", self.obj("barraestado")):
+                if self.nav.tabla == "ciudades":
+                    if len(self.obj("txt_03").get_text()) == 0:
+                        estado = False
+                    else:
+                        estado = Op.comprobar_numero(int, self.obj("txt_03"),
+                            "Cód. Departamento", self.obj("barraestado"))
+                else:
+                    estado = True
+            else:
+                estado = False
+        self.obj("btn_guardar").set_sensitive(estado)
+
+    def key_press_event(self, objeto, evento):
+        if evento.state & ModifierType.CONTROL_MASK:  # Tecla CTRL en combinación
+            if evento.keyval == 65293:  # Presionando Enter
+                if objeto == self.obj("txt_02"):
+                    self.on_btn_pais_clicked(0)
+                elif objeto == self.obj("txt_03"):
+                    self.on_btn_departamento_clicked(0)
+        elif evento.keyval == 65293:  # Presionando Enter
+            self.focus_out_event(objeto, 0)
+
+    def focus_in_event(self, objeto, evento):
+        if objeto == self.obj("txt_02"):
+            tipo = "País"
+        elif objeto == self.obj("txt_03"):
+            tipo = "Departamento"
+        self.obj("barraestado").push(0, "Presione CTRL + Enter para Buscar un " + tipo + ".")
+
+    def focus_out_event(self, objeto, evento):
+        valor = objeto.get_text()
+        if len(valor) == 0:
+            self.obj("barraestado").push(0, "")
+            if objeto == self.obj("txt_02"):
+                self.obj("txt_02_1").set_text("")
+            elif objeto == self.obj("txt_03"):
+                self.obj("txt_03_1").set_text("")
+        else:
+            if objeto == self.obj("txt_00"):
+                # Comprueba que existan los datos y sean números enteros
+                if len(self.obj("txt_00").get_text()) > 0 and len(self.obj("txt_02").get_text()) > 0 \
+                and Op.comprobar_numero(int, self.obj("txt_00"), "Código", self.obj("barraestado")) \
+                and Op.comprobar_numero(int, self.obj("txt_02"), "Cód. de País", self.obj("barraestado")):
+
+                    if self.nav.tabla == "ciudades":
+                        if len(self.obj("txt_03").get_text()) > 0 and Op.comprobar_numero(int,
+                        self.obj("txt_03"), "Cód. de Departamento", self.obj("barraestado")):
+                            busq = "" if not self.editando else \
+                            " AND (idPais <> " + str(self.cond_pais) + \
+                            " OR idDepartamento <> " + str(self.cond_dep) + \
+                            " OR idCiudad <> " + str(self.cond) + ")"
+
+                            Op.comprobar_unique(self.nav.datos_conexion, self.nav.tabla + "_s",
+                                self.nav.campoid, self.obj("txt_00").get_text() +
+                                " AND idPais = " + self.obj("txt_02").get_text() +
+                                " AND idDepartamento = " + self.obj("txt_03").get_text() + busq,
+                                self.obj("txt_00"), self.obj("btn_guardar"), self.obj("barraestado"),
+                                "Ya han sido registados los Códigos de Ciudad, Departamento y País introducidos.")
+
+                    else:  # Departamentos
+                        # Al editar, comprueba que los valores son diferentes del original
+                        busq = "" if not self.editando else \
+                        " AND (idPais <> " + str(self.cond_pais) + \
+                        " OR idDepartamento <> " + str(self.cond) + ")"
+
+                        Op.comprobar_unique(self.nav.datos_conexion, self.nav.tabla + "_s",
+                            self.nav.campoid, self.obj("txt_00").get_text() +
+                            " AND idPais = " + self.obj("txt_02").get_text() + busq,
+                            self.obj("txt_00"), self.obj("btn_guardar"), self.obj("barraestado"),
+                            "Ya han sido registados los Códigos de Departamento y País introducidos.")
+
+            elif objeto == self.obj("txt_01"):
+                busc = "" if not self.editando else " AND " + self.nav.campoid + " <> " + self.cond
+                # Comprueba si el nombre o la descripcion ya ha sido registado/a
+                Op.comprobar_unique(self.nav.datos_conexion, self.nav.tabla + "_s",
+                    "Nombre", "'" + valor + "'" + busc, objeto, self.obj("btn_guardar"),
+                    self.obj("barraestado"), "El Nombre introducido ya ha sido registado.")
+
+            elif objeto == self.obj("txt_02"):
+                self.buscar_foraneos(objeto, self.obj("txt_02_1"),
+                    "País", "paises", "idPais", valor)
+
+            elif objeto == self.obj("txt_03") and len(self.obj("txt_02").get_text()) > 0:
+                self.buscar_foraneos(objeto, self.obj("txt_03_1"),
+                    "Departamento", "departamentos_s", "idDepartamento", valor,
+                    " AND idPais = " + self.obj("txt_02").get_text())
+
+    def buscar_foraneos(self, objeto, companero, nombre, tabla, campo, valor, condicion=""):
+        if Op.comprobar_numero(int, objeto, "Cód. de " + nombre, self.obj("barraestado")):
+            conexion = Op.conectar(self.nav.datos_conexion)
+            cursor = Op.consultar(conexion, "Nombre", tabla,
+                " WHERE " + campo + " = " + valor + condicion)
+            datos = cursor.fetchall()
+            cant = cursor.rowcount
+            conexion.close()  # Finaliza la conexión
+
+            if cant > 0:
+                companero.set_text(datos[0][0])
+                self.obj("barraestado").push(0, "")
+
+                if self.nav.tabla == "ciudades" and objeto == self.obj("txt_02") \
+                and len(self.obj("txt_03_1").get_text()) == 0:
+                    # Con paises, si no aparece el nombre del departamento, lo buscará
+                    self.focus_out_event(self.obj("txt_03"), 0)
+                else:
+                    self.focus_out_event(self.obj("txt_00"), 0)
+
+            else:
+                self.obj("btn_guardar").set_sensitive(False)
+                objeto.grab_focus()
+                self.obj("barraestado").push(0, "El Cód. de " + nombre + " no es válido.")
+                companero.set_text("")
+
+
+def config_grilla(self):
+    celda0 = Op.celdas(0.5)
+    celda1 = Op.celdas(0.0)
+
+    col0 = Op.columnas("Código", celda0, 0, True, 100, 150)
+    col0.set_sort_column_id(0)
+    col1 = Op.columnas("Nombre", celda1, 1, True, 200)
+    col1.set_sort_column_id(1)
+    col2 = Op.columnas("Cód. País", celda0, 2, True, 100, 150)
+    col2.set_sort_column_id(2)
+    col3 = Op.columnas("País", celda1, 3, True, 200)
+    col3.set_sort_column_id(3)
+
+    lista = [col0, col1, col2, col3]
+    for columna in lista:
+        columna.connect('clicked', self.on_treeviewcolumn_clicked)
+        self.obj("grilla").append_column(columna)
+
+    if self.tabla == "ciudades":
+        col4 = Op.columnas("Cód. Depart.", celda0, 4, True, 100, 150)
+        col4.set_sort_column_id(4)
+        col5 = Op.columnas("Departamento, Provincia, Estado", celda1, 5, True, 200)
+        col5.set_sort_column_id(5)
+
+        col4.connect('clicked', self.on_treeviewcolumn_clicked)
+        col5.connect('clicked', self.on_treeviewcolumn_clicked)
+
+        self.obj("grilla").append_column(col4)
+        self.obj("grilla").append_column(col5)
+
+        lista = ListStore(int, str, int, str, int, str)
+
+    else:  # Departamentos
+        lista = ListStore(int, str, int, str)
+
+    self.obj("grilla").set_rules_hint(True)
+    self.obj("grilla").set_search_column(1)
+    self.obj("grilla").set_property('enable-grid-lines', 3)
+    columna_buscar(self, 1)
+
+    self.obj("grilla").set_model(lista)
+    self.obj("grilla").show()
+
+
+def cargar_grilla(self):
+    opcion = "" if len(self.obj("txt_buscar").get_text()) == 0 else \
+    " WHERE " + self.campo_buscar + " LIKE '%" + self.obj("txt_buscar").get_text() + "%'"
+
+    if len(self.condicion) > 0:
+        self.condicion = " WHERE " + self.condicion if len(opcion) == 0 \
+        else " AND " + self.condicion
+
+    campos, camporden = self.campoid + ", Nombre, idPais, Pais", ""
+    if self.tabla == "ciudades":
+        campos += ", idDepartamento, Departamento"
+        camporden += "idDepartamento, "
+
+    conexion = Op.conectar(self.datos_conexion)
+    cursor = Op.consultar(conexion, campos, self.tabla + "_s",
+        opcion + self.condicion + " ORDER BY idPais, " + camporden + self.campoid)
+    datos = cursor.fetchall()
+    cant = cursor.rowcount
+    conexion.close()  # Finaliza la conexión
+
+    lista = self.obj("grilla").get_model()
+    lista.clear()
+
+    for i in range(0, cant):
+        fila = [datos[i][0], datos[i][1], datos[i][2], datos[i][3]]
+        if self.tabla == "ciudades":
+            fila += [datos[i][4], datos[i][5]]
+        lista.append(fila)
+
+    cant = str(cant) + " registro encontrado." if cant == 1 \
+        else str(cant) + " registros encontrados."
+    self.obj("barraestado").push(0, cant)
+
+
+def columna_buscar(self, idcolumna):
+    if idcolumna == 0:
+        col, self.campo_buscar = "Código", self.campoid
+    elif idcolumna == 1:
+        col = self.campo_buscar = "Nombre"
+    elif idcolumna == 2:
+        col, self.campo_buscar = "Cód. País", "idPais"
+    elif idcolumna == 3:
+        col, self.campo_buscar = "País", "Pais"
+    elif idcolumna == 4:
+        col, self.campo_buscar = "Cód. Departamento", "idDepartamento"
+    elif idcolumna == 5:
+        col, self.campo_buscar = "Departamento", "Departamento"
+
+    self.obj("label_buscar").set_text("Filtrar por " + col + ":")
+
+
+def eliminar(self):
+    seleccion, iterador = self.obj("grilla").get_selection().get_selected()
+    valor0 = str(seleccion.get_value(iterador, 0))
+    valor1 = seleccion.get_value(iterador, 1)
+    valor2 = str(seleccion.get_value(iterador, 2))  # País
+    valor3 = seleccion.get_value(iterador, 3)
+
+    if self.tabla == "ciudades":
+        valor4 = str(seleccion.get_value(iterador, 4))
+        valor5 = seleccion.get_value(iterador, 5)
+
+        opcion = "\nDepartamento: " + valor5
+        campos = valor2 + ", " + valor4 + ", " + valor0
+
+    else:  # Departamentos
+        opcion = ""
+        campos = valor2 + ", " + valor0
+
+    eleccion = Mens.pregunta_borrar("Seleccionó:\n\nCód.: " + valor0 +
+        "\nNombre: " + valor1 + "\nPaís: " + valor3 + opcion)
+
+    self.obj("grilla").get_selection().unselect_all()
+    self.obj("barraestado").push(0, "")
+
+    if eleccion:
+        conexion = Op.conectar(self.datos_conexion)
+        Op.eliminar(conexion, self.tabla, campos)
+        conexion.commit()
+        conexion.close()  # Finaliza la conexión
+        cargar_grilla(self)
+
+
+def listar_grilla(self):
+    from clases import listado
+    from reportlab.platypus import Paragraph as Par
+    from reportlab.lib.pagesizes import A4
+
+    datos = self.obj("grilla").get_model()
+    cant = len(datos)
+
+    head = listado.tabla_celda_titulo()
+    body_ce = listado.tabla_celda_centrado()
+    body_de = listado.tabla_celda_just_derecho()
+    body_iz = listado.tabla_celda_just_izquierdo()
+
+    listafila = [Par("Código", head), Par(self.titulodos, head), Par(self.titulotres, head)]
+    if self.tabla == "categorias":
+        listafila.append(Par("Porc.", head))
+        tamanos = [100, 200, 100, 50]
+    else:
+        tamanos = [100, 200, 100]
+
+    lista = [listafila]
+    for i in range(0, cant):
+        listafila = [Par(str(datos[i][0]), body_ce),
+        Par(datos[i][1], body_iz), Par(datos[i][2], body_iz)]
+
+        if self.tabla == "categorias":
+            listafila.append(Par(str(datos[i][3]), body_de))
+
+        lista.append(listafila)
+
+    listado.listado(self.titulo, lista, tamanos, A4)
+
+
+def seleccion(self):
+    try:
+        seleccion, iterador = self.obj("grilla").get_selection().get_selected()
+        valor0 = str(seleccion.get_value(iterador, 0))
+        valor1 = seleccion.get_value(iterador, 1)
+        valor2 = str(seleccion.get_value(iterador, 2))  # Pais
+        valor3 = seleccion.get_value(iterador, 3)
+
+        if self.tabla == "ciudades":
+            valor4 = str(seleccion.get_value(iterador, 4))  # Departamentos
+            valor5 = seleccion.get_value(iterador, 5)
+
+            self.origen.txt_cod_ciu.set_text(valor0)
+            self.origen.txt_des_ciu.set_text(valor1)
+            self.origen.txt_cod_dep.set_text(valor4)
+            self.origen.txt_des_dep.set_text(valor5)
+
+        elif self.tabla == "departamentos":
+            self.origen.txt_cod_dep.set_text(valor0)
+            self.origen.txt_des_dep.set_text(valor1)
+
+        self.origen.txt_cod_pais.set_text(valor2)
+        self.origen.txt_des_pais.set_text(valor3)
+
+        self.on_btn_salir_clicked(0)
+    except:
+        pass

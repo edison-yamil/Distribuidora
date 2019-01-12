@@ -1,0 +1,1469 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <!-- interface-requires gtk+ 3.0 -->
+  <object class="GtkWindow" id="ventana">
+    <property name="can_focus">False</property>
+    <property name="window_position">center</property>
+    <property name="icon">Logo.png</property>
+    <signal name="destroy" handler="on_sist_salir_activate" swapped="no"/>
+    <child>
+      <object class="GtkVBox" id="vbox">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <child>
+          <object class="GtkMenuBar" id="menubar">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <child>
+              <object class="GtkMenuItem" id="menu_sistema">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="label" translatable="yes">Sistema</property>
+                <property name="use_underline">True</property>
+                <child type="submenu">
+                  <object class="GtkMenu" id="menu1">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <child>
+                      <object class="GtkMenuItem" id="sist_usuarios">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="label" translatable="yes">Usuarios del Sistema</property>
+                        <property name="use_underline">True</property>
+                        <signal name="activate" handler="on_sist_usuarios_activate" swapped="no"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkSeparatorMenuItem" id="separador_sist_1">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkMenuItem" id="sist_cambiar">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="label" translatable="yes">Cambiar de Usuario</property>
+                        <property name="use_underline">True</property>
+                        <signal name="activate" handler="on_sist_cambiar_activate" swapped="no"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkSeparatorMenuItem" id="separador_sist_2">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkMenuItem" id="sist_salir">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="label" translatable="yes">Salir</property>
+                        <property name="use_underline">True</property>
+                        <signal name="activate" handler="on_sist_salir_activate" swapped="no"/>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="GtkMenuItem" id="menu_recursos_humanos">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="label" translatable="yes">Recursos Humanos</property>
+                <property name="use_underline">True</property>
+                <child type="submenu">
+                  <object class="GtkMenu" id="menu2">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <child>
+                      <object class="GtkMenuItem" id="menu_rrhh_empleados">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="label" translatable="yes">Empleados</property>
+                        <property name="use_underline">True</property>
+                        <child type="submenu">
+                          <object class="GtkMenu" id="menu8">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <child>
+                              <object class="GtkMenuItem" id="rrhh_empresas">
+                                <property name="visible">True</property>
+                                <property name="can_focus">False</property>
+                                <property name="label" translatable="yes">Empresas</property>
+                                <property name="use_underline">True</property>
+                                <signal name="activate" handler="on_rrhh_empresas_activate" swapped="no"/>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkMenuItem" id="rrhh_empleados">
+                                <property name="visible">True</property>
+                                <property name="can_focus">False</property>
+                                <property name="label" translatable="yes">Empleados</property>
+                                <property name="use_underline">True</property>
+                                <signal name="activate" handler="on_rrhh_empleados_activate" swapped="no"/>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkSeparatorMenuItem" id="separador_rrhh_1">
+                                <property name="visible">True</property>
+                                <property name="can_focus">False</property>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkMenuItem" id="rrhh_beneficiarios">
+                                <property name="visible">True</property>
+                                <property name="can_focus">False</property>
+                                <property name="label" translatable="yes">Beneficiarios</property>
+                                <property name="use_underline">True</property>
+                                <signal name="activate" handler="on_rrhh_beneficiarios_activate" swapped="no"/>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkMenuItem" id="rrhh_contratos">
+                                <property name="visible">True</property>
+                                <property name="can_focus">False</property>
+                                <property name="label" translatable="yes">Contratos</property>
+                                <property name="use_underline">True</property>
+                                <signal name="activate" handler="on_rrhh_contratos_activate" swapped="no"/>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkMenuItem" id="rrhh_vendedores">
+                                <property name="visible">True</property>
+                                <property name="can_focus">False</property>
+                                <property name="label" translatable="yes">Vendedores</property>
+                                <property name="use_underline">True</property>
+                                <signal name="activate" handler="on_rrhh_vendedores_activate" swapped="no"/>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkMenuItem" id="menu_rrhh_movimientos">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="label" translatable="yes">Movimientos</property>
+                        <property name="use_underline">True</property>
+                        <child type="submenu">
+                          <object class="GtkMenu" id="menu9">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <child>
+                              <object class="GtkMenuItem" id="rrhh_entradas">
+                                <property name="visible">True</property>
+                                <property name="can_focus">False</property>
+                                <property name="label" translatable="yes">Entradas</property>
+                                <property name="use_underline">True</property>
+                                <signal name="activate" handler="on_rrhh_entradas_activate" swapped="no"/>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkSeparatorMenuItem" id="separador_rrhh_2">
+                                <property name="visible">True</property>
+                                <property name="can_focus">False</property>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkMenuItem" id="rrhh_asistencias">
+                                <property name="visible">True</property>
+                                <property name="can_focus">False</property>
+                                <property name="label" translatable="yes">Asistencias</property>
+                                <property name="use_underline">True</property>
+                                <signal name="activate" handler="on_rrhh_asistencias_activate" swapped="no"/>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkMenuItem" id="rrhh_permisos">
+                                <property name="visible">True</property>
+                                <property name="can_focus">False</property>
+                                <property name="label" translatable="yes">Justificativos por Permisos</property>
+                                <property name="use_underline">True</property>
+                                <signal name="activate" handler="on_rrhh_permisos_activate" swapped="no"/>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkMenuItem" id="rrhh_sanciones">
+                                <property name="visible">True</property>
+                                <property name="can_focus">False</property>
+                                <property name="label" translatable="yes">Justificativos por Sanciones</property>
+                                <property name="use_underline">True</property>
+                                <signal name="activate" handler="on_rrhh_sanciones_activate" swapped="no"/>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkMenuItem" id="rrhh_judiciales">
+                                <property name="visible">True</property>
+                                <property name="can_focus">False</property>
+                                <property name="label" translatable="yes">Justificativos Judiciales</property>
+                                <property name="use_underline">True</property>
+                                <signal name="activate" handler="on_rrhh_judiciales_activate" swapped="no"/>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkMenuItem" id="rrhh_reposos">
+                                <property name="visible">True</property>
+                                <property name="can_focus">False</property>
+                                <property name="label" translatable="yes">Reposos</property>
+                                <property name="use_underline">True</property>
+                                <signal name="activate" handler="on_rrhh_reposos_activate" swapped="no"/>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkMenuItem" id="rrhh_vacaciones">
+                                <property name="visible">True</property>
+                                <property name="can_focus">False</property>
+                                <property name="label" translatable="yes">Vacaciones</property>
+                                <property name="use_underline">True</property>
+                                <signal name="activate" handler="on_rrhh_vacaciones_activate" swapped="no"/>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkSeparatorMenuItem" id="separador_rrhh_3">
+                                <property name="visible">True</property>
+                                <property name="can_focus">False</property>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkMenuItem" id="rrhh_preavisos">
+                                <property name="visible">True</property>
+                                <property name="can_focus">False</property>
+                                <property name="label" translatable="yes">Preavisos</property>
+                                <property name="use_underline">True</property>
+                                <signal name="activate" handler="on_rrhh_preavisos_activate" swapped="no"/>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkMenuItem" id="rrhh_salidas">
+                                <property name="visible">True</property>
+                                <property name="can_focus">False</property>
+                                <property name="label" translatable="yes">Salidas</property>
+                                <property name="use_underline">True</property>
+                                <signal name="activate" handler="on_rrhh_salidas_activate" swapped="no"/>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkMenuItem" id="menu_rrhh_remuneraciones">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="label" translatable="yes">Remuneraciones</property>
+                        <property name="use_underline">True</property>
+                        <child type="submenu">
+                          <object class="GtkMenu" id="menu10">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <child>
+                              <object class="GtkMenuItem" id="rrhh_aguinaldos">
+                                <property name="visible">True</property>
+                                <property name="can_focus">False</property>
+                                <property name="label" translatable="yes">Aguinaldos</property>
+                                <property name="use_underline">True</property>
+                                <signal name="activate" handler="on_rrhh_aguinaldos_activate" swapped="no"/>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkMenuItem" id="rrhh_anticipos">
+                                <property name="visible">True</property>
+                                <property name="can_focus">False</property>
+                                <property name="label" translatable="yes">Anticipos</property>
+                                <property name="use_underline">True</property>
+                                <signal name="activate" handler="on_rrhh_anticipos_activate" swapped="no"/>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkMenuItem" id="rrhh_descuentos">
+                                <property name="visible">True</property>
+                                <property name="can_focus">False</property>
+                                <property name="label" translatable="yes">Descuentos</property>
+                                <property name="use_underline">True</property>
+                                <signal name="activate" handler="on_rrhh_descuentos_activate" swapped="no"/>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkMenuItem" id="rrhh_gratificaciones">
+                                <property name="visible">True</property>
+                                <property name="can_focus">False</property>
+                                <property name="label" translatable="yes">Gratificaciones</property>
+                                <property name="use_underline">True</property>
+                                <signal name="activate" handler="on_rrhh_gratificaciones_activate" swapped="no"/>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkMenuItem" id="rrhh_horas_extras">
+                                <property name="visible">True</property>
+                                <property name="can_focus">False</property>
+                                <property name="label" translatable="yes">Horas Extraordinarias</property>
+                                <property name="use_underline">True</property>
+                                <signal name="activate" handler="on_rrhh_horas_extras_activate" swapped="no"/>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkSeparatorMenuItem" id="separador_rrhh_4">
+                                <property name="visible">True</property>
+                                <property name="can_focus">False</property>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkMenuItem" id="rrhh_pagos">
+                                <property name="visible">True</property>
+                                <property name="can_focus">False</property>
+                                <property name="label" translatable="yes">Pagos</property>
+                                <property name="use_underline">True</property>
+                                <signal name="activate" handler="on_rrhh_pagos_activate" swapped="no"/>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="GtkMenuItem" id="menu_compras">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="label" translatable="yes">Compras</property>
+                <property name="use_underline">True</property>
+                <child type="submenu">
+                  <object class="GtkMenu" id="menu3">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <child>
+                      <object class="GtkMenuItem" id="comp_ajustes">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="label" translatable="yes">Ajustes de Inventario</property>
+                        <property name="use_underline">True</property>
+                        <signal name="activate" handler="on_comp_ajustes_activate" swapped="no"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkMenuItem" id="comp_pedidos">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="label" translatable="yes">Pedidos de Compra</property>
+                        <property name="use_underline">True</property>
+                        <signal name="activate" handler="on_comp_pedidos_activate" swapped="no"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkMenuItem" id="comp_ordenes">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="label" translatable="yes">Órdenes de Compra</property>
+                        <property name="use_underline">True</property>
+                        <signal name="activate" handler="on_comp_ordenes_activate" swapped="no"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkSeparatorMenuItem" id="separator_comp_1">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkMenuItem" id="comp_facturas">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="label" translatable="yes">Facturas de Compra</property>
+                        <property name="use_underline">True</property>
+                        <signal name="activate" handler="on_comp_facturas_activate" swapped="no"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkMenuItem" id="comp_creditos">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="label" translatable="yes">Notas de Crédito</property>
+                        <property name="use_underline">True</property>
+                        <signal name="activate" handler="on_comp_creditos_activate" swapped="no"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkMenuItem" id="comp_debitos">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="label" translatable="yes">Notas de Débito</property>
+                        <property name="use_underline">True</property>
+                        <signal name="activate" handler="on_comp_debitos_activate" swapped="no"/>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="GtkMenuItem" id="menu_ventas">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="label" translatable="yes">Ventas</property>
+                <property name="use_underline">True</property>
+                <child type="submenu">
+                  <object class="GtkMenu" id="menu4">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <child>
+                      <object class="GtkMenuItem" id="vent_aperturas">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="label" translatable="yes">Aperturas de Caja</property>
+                        <property name="use_underline">True</property>
+                        <signal name="activate" handler="on_vent_aperturas_activate" swapped="no"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkSeparatorMenuItem" id="separator_vent_1">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkMenuItem" id="vent_pedidos">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="label" translatable="yes">Notas de Pedido</property>
+                        <property name="use_underline">True</property>
+                        <signal name="activate" handler="on_vent_pedidos_activate" swapped="no"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkMenuItem" id="vent_facturas">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="label" translatable="yes">Facturas de Venta</property>
+                        <property name="use_underline">True</property>
+                        <signal name="activate" handler="on_vent_facturas_activate" swapped="no"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkMenuItem" id="vent_remisiones">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="label" translatable="yes">Notas de Remisión</property>
+                        <property name="use_underline">True</property>
+                        <signal name="activate" handler="on_vent_remisiones_activate" swapped="no"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkMenuItem" id="vent_creditos">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="label" translatable="yes">Notas de Crédito</property>
+                        <property name="use_underline">True</property>
+                        <signal name="activate" handler="on_vent_creditos_activate" swapped="no"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkMenuItem" id="vent_debitos">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="label" translatable="yes">Notas de Débito</property>
+                        <property name="use_underline">True</property>
+                        <signal name="activate" handler="on_vent_debitos_activate" swapped="no"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkMenuItem" id="vent_recibos">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="label" translatable="yes">Recibos</property>
+                        <property name="use_underline">True</property>
+                        <signal name="activate" handler="on_vent_recibos_activate" swapped="no"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkSeparatorMenuItem" id="separator_vent_2">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkMenuItem" id="vent_cheques">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="label" translatable="yes">Cheques de Terceros</property>
+                        <property name="use_underline">True</property>
+                        <signal name="activate" handler="on_vent_cheques_activate" swapped="no"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkMenuItem" id="vent_tarjetas">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="label" translatable="yes">Tarjetas</property>
+                        <property name="use_underline">True</property>
+                        <signal name="activate" handler="on_vent_tarjetas_activate" swapped="no"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkSeparatorMenuItem" id="separator_vent_3">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkMenuItem" id="vent_arqueos">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="label" translatable="yes">Arqueos de Caja</property>
+                        <property name="use_underline">True</property>
+                        <signal name="activate" handler="on_vent_arqueos_activate" swapped="no"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkMenuItem" id="vent_cierres">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="label" translatable="yes">Cierres de Caja</property>
+                        <property name="use_underline">True</property>
+                        <signal name="activate" handler="on_vent_cierres_activate" swapped="no"/>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="GtkMenuItem" id="menu_registros">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="label" translatable="yes">Registros</property>
+                <property name="use_underline">True</property>
+                <child type="submenu">
+                  <object class="GtkMenu" id="menu5">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <child>
+                      <object class="GtkMenuItem" id="menu_reg_items">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="label" translatable="yes">Ítems</property>
+                        <property name="use_underline">True</property>
+                        <child type="submenu">
+                          <object class="GtkMenu" id="menu11">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <child>
+                              <object class="GtkMenuItem" id="reg_categorias">
+                                <property name="visible">True</property>
+                                <property name="can_focus">False</property>
+                                <property name="label" translatable="yes">Categorías</property>
+                                <property name="use_underline">True</property>
+                                <signal name="activate" handler="on_reg_categorias_activate" swapped="no"/>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkMenuItem" id="reg_depositos">
+                                <property name="visible">True</property>
+                                <property name="can_focus">False</property>
+                                <property name="label" translatable="yes">Depósitos</property>
+                                <property name="use_underline">True</property>
+                                <signal name="activate" handler="on_reg_depositos_activate" swapped="no"/>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkMenuItem" id="reg_impuestos">
+                                <property name="visible">True</property>
+                                <property name="can_focus">False</property>
+                                <property name="label" translatable="yes">Impuestos</property>
+                                <property name="use_underline">True</property>
+                                <signal name="activate" handler="on_reg_impuestos_activate" swapped="no"/>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkMenuItem" id="reg_marca_items">
+                                <property name="visible">True</property>
+                                <property name="can_focus">False</property>
+                                <property name="label" translatable="yes">Marcas de Ítems</property>
+                                <property name="use_underline">True</property>
+                                <signal name="activate" handler="on_reg_marca_items_activate" swapped="no"/>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkMenuItem" id="reg_motivo_ajustes">
+                                <property name="visible">True</property>
+                                <property name="can_focus">False</property>
+                                <property name="label" translatable="yes">Motivos de Ajuste</property>
+                                <property name="use_underline">True</property>
+                                <signal name="activate" handler="on_reg_motivo_ajustes_activate" swapped="no"/>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkMenuItem" id="reg_presentaciones">
+                                <property name="visible">True</property>
+                                <property name="can_focus">False</property>
+                                <property name="label" translatable="yes">Presentaciones</property>
+                                <property name="use_underline">True</property>
+                                <signal name="activate" handler="on_reg_presentaciones_activate" swapped="no"/>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkMenuItem" id="reg_unidad_medidas">
+                                <property name="visible">True</property>
+                                <property name="can_focus">False</property>
+                                <property name="label" translatable="yes">Unidades de Medida</property>
+                                <property name="use_underline">True</property>
+                                <signal name="activate" handler="on_reg_unidad_medidas_activate" swapped="no"/>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkSeparatorMenuItem" id="separador_reg_1">
+                                <property name="visible">True</property>
+                                <property name="can_focus">False</property>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkMenuItem" id="reg_items">
+                                <property name="visible">True</property>
+                                <property name="can_focus">False</property>
+                                <property name="label" translatable="yes">Ítems</property>
+                                <property name="use_underline">True</property>
+                                <signal name="activate" handler="on_reg_items_activate" swapped="no"/>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkMenuItem" id="menu_reg_personas">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="label" translatable="yes">Personas</property>
+                        <property name="use_underline">True</property>
+                        <child type="submenu">
+                          <object class="GtkMenu" id="menu12">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <child>
+                              <object class="GtkMenuItem" id="menu_reg_personales">
+                                <property name="visible">True</property>
+                                <property name="can_focus">False</property>
+                                <property name="label" translatable="yes">Datos Personales</property>
+                                <property name="use_underline">True</property>
+                                <child type="submenu">
+                                  <object class="GtkMenu" id="menu15">
+                                    <property name="visible">True</property>
+                                    <property name="can_focus">False</property>
+                                    <child>
+                                      <object class="GtkMenuItem" id="reg_estados_civiles">
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">False</property>
+                                        <property name="label" translatable="yes">Estados Civiles</property>
+                                        <property name="use_underline">True</property>
+                                        <signal name="activate" handler="on_reg_estados_civiles_activate" swapped="no"/>
+                                      </object>
+                                    </child>
+                                    <child>
+                                      <object class="GtkMenuItem" id="reg_generos">
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">False</property>
+                                        <property name="label" translatable="yes">Géneros</property>
+                                        <property name="use_underline">True</property>
+                                        <signal name="activate" handler="on_reg_generos_activate" swapped="no"/>
+                                      </object>
+                                    </child>
+                                    <child>
+                                      <object class="GtkMenuItem" id="reg_ocupaciones">
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">False</property>
+                                        <property name="label" translatable="yes">Ocupaciones</property>
+                                        <property name="use_underline">True</property>
+                                        <signal name="activate" handler="on_reg_ocupaciones_activate" swapped="no"/>
+                                      </object>
+                                    </child>
+                                    <child>
+                                      <object class="GtkMenuItem" id="reg_rol_personas">
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">False</property>
+                                        <property name="label" translatable="yes">Roles de Personas</property>
+                                        <property name="use_underline">True</property>
+                                        <signal name="activate" handler="on_reg_rol_personas_activate" swapped="no"/>
+                                      </object>
+                                    </child>
+                                    <child>
+                                      <object class="GtkMenuItem" id="reg_tipo_clientes">
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">False</property>
+                                        <property name="label" translatable="yes">Tipos de Clientes</property>
+                                        <property name="use_underline">True</property>
+                                        <signal name="activate" handler="on_reg_tipo_clientes_activate" swapped="no"/>
+                                      </object>
+                                    </child>
+                                    <child>
+                                      <object class="GtkMenuItem" id="reg_tipo_documentos">
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">False</property>
+                                        <property name="label" translatable="yes">Tipos de Documentos</property>
+                                        <property name="use_underline">True</property>
+                                        <signal name="activate" handler="on_reg_tipo_documentos_activate" swapped="no"/>
+                                      </object>
+                                    </child>
+                                    <child>
+                                      <object class="GtkMenuItem" id="reg_tipo_empresas">
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">False</property>
+                                        <property name="label" translatable="yes">Tipos de Empresas</property>
+                                        <property name="use_underline">True</property>
+                                        <signal name="activate" handler="on_reg_tipo_empresas_activate" swapped="no"/>
+                                      </object>
+                                    </child>
+                                    <child>
+                                      <object class="GtkMenuItem" id="reg_zona_ventas">
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">False</property>
+                                        <property name="label" translatable="yes">Zonas de Ventas</property>
+                                        <property name="use_underline">True</property>
+                                        <signal name="activate" handler="on_reg_zona_ventas_activate" swapped="no"/>
+                                      </object>
+                                    </child>
+                                  </object>
+                                </child>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkMenuItem" id="menu_reg_localizacion">
+                                <property name="visible">True</property>
+                                <property name="can_focus">False</property>
+                                <property name="label" translatable="yes">Datos de Localización</property>
+                                <property name="use_underline">True</property>
+                                <child type="submenu">
+                                  <object class="GtkMenu" id="menu16">
+                                    <property name="visible">True</property>
+                                    <property name="can_focus">False</property>
+                                    <child>
+                                      <object class="GtkMenuItem" id="reg_barrios">
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">False</property>
+                                        <property name="label" translatable="yes">Barrios</property>
+                                        <property name="use_underline">True</property>
+                                        <signal name="activate" handler="on_reg_barrios_activate" swapped="no"/>
+                                      </object>
+                                    </child>
+                                    <child>
+                                      <object class="GtkMenuItem" id="reg_calles">
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">False</property>
+                                        <property name="label" translatable="yes">Calles</property>
+                                        <property name="use_underline">True</property>
+                                        <signal name="activate" handler="on_reg_calles_activate" swapped="no"/>
+                                      </object>
+                                    </child>
+                                    <child>
+                                      <object class="GtkMenuItem" id="reg_ciudades">
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">False</property>
+                                        <property name="label" translatable="yes">Ciudades</property>
+                                        <property name="use_underline">True</property>
+                                        <signal name="activate" handler="on_reg_ciudades_activate" swapped="no"/>
+                                      </object>
+                                    </child>
+                                    <child>
+                                      <object class="GtkMenuItem" id="reg_departamentos">
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">False</property>
+                                        <property name="label" translatable="yes">Departamentos, Provincias, Estados</property>
+                                        <property name="use_underline">True</property>
+                                        <signal name="activate" handler="on_reg_departamentos_activate" swapped="no"/>
+                                      </object>
+                                    </child>
+                                    <child>
+                                      <object class="GtkMenuItem" id="reg_paises">
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">False</property>
+                                        <property name="label" translatable="yes">Países</property>
+                                        <property name="use_underline">True</property>
+                                        <signal name="activate" handler="on_reg_paises_activate" swapped="no"/>
+                                      </object>
+                                    </child>
+                                    <child>
+                                      <object class="GtkMenuItem" id="reg_tipo_calles">
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">False</property>
+                                        <property name="label" translatable="yes">Tipos de Calles</property>
+                                        <property name="use_underline">True</property>
+                                        <signal name="activate" handler="on_reg_tipo_calles_activate" swapped="no"/>
+                                      </object>
+                                    </child>
+                                    <child>
+                                      <object class="GtkMenuItem" id="reg_tipo_medios">
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">False</property>
+                                        <property name="label" translatable="yes">Tipos de Medios de Contacto</property>
+                                        <property name="use_underline">True</property>
+                                        <signal name="activate" handler="on_reg_tipo_medios_activate" swapped="no"/>
+                                      </object>
+                                    </child>
+                                  </object>
+                                </child>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkSeparatorMenuItem" id="separador_reg_2">
+                                <property name="visible">True</property>
+                                <property name="can_focus">False</property>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkMenuItem" id="reg_personas">
+                                <property name="visible">True</property>
+                                <property name="can_focus">False</property>
+                                <property name="label" translatable="yes">Personas</property>
+                                <property name="use_underline">True</property>
+                                <signal name="activate" handler="on_reg_personas_activate" swapped="no"/>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkMenuItem" id="menu_reg_recursos_humanos">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="label" translatable="yes">Recursos Humanos</property>
+                        <property name="use_underline">True</property>
+                        <child type="submenu">
+                          <object class="GtkMenu" id="menu13">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <child>
+                              <object class="GtkMenuItem" id="menu_reg_contrataciones">
+                                <property name="visible">True</property>
+                                <property name="can_focus">False</property>
+                                <property name="label" translatable="yes">Contrataciones</property>
+                                <property name="use_underline">True</property>
+                                <child type="submenu">
+                                  <object class="GtkMenu" id="menu17">
+                                    <property name="visible">True</property>
+                                    <property name="can_focus">False</property>
+                                    <child>
+                                      <object class="GtkMenuItem" id="reg_salarios_minimos">
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">False</property>
+                                        <property name="label" translatable="yes">Salarios Mínimos</property>
+                                        <property name="use_underline">True</property>
+                                        <signal name="activate" handler="on_reg_salarios_minimos_activate" swapped="no"/>
+                                      </object>
+                                    </child>
+                                    <child>
+                                      <object class="GtkSeparatorMenuItem" id="separador_reg_3">
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">False</property>
+                                      </object>
+                                    </child>
+                                    <child>
+                                      <object class="GtkMenuItem" id="reg_actividades">
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">False</property>
+                                        <property name="label" translatable="yes">Actividades Económicas</property>
+                                        <property name="use_underline">True</property>
+                                        <signal name="activate" handler="on_reg_actividades_activate" swapped="no"/>
+                                      </object>
+                                    </child>
+                                    <child>
+                                      <object class="GtkMenuItem" id="reg_cargos">
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">False</property>
+                                        <property name="label" translatable="yes">Cargos</property>
+                                        <property name="use_underline">True</property>
+                                        <signal name="activate" handler="on_reg_cargos_activate" swapped="no"/>
+                                      </object>
+                                    </child>
+                                    <child>
+                                      <object class="GtkMenuItem" id="reg_formas_pago">
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">False</property>
+                                        <property name="label" translatable="yes">Formas de Pago</property>
+                                        <property name="use_underline">True</property>
+                                        <signal name="activate" handler="on_reg_formas_pago_activate" swapped="no"/>
+                                      </object>
+                                    </child>
+                                    <child>
+                                      <object class="GtkMenuItem" id="reg_periodos_pago">
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">False</property>
+                                        <property name="label" translatable="yes">Periodos de Pago</property>
+                                        <property name="use_underline">True</property>
+                                        <signal name="activate" handler="on_reg_periodos_pago_activate" swapped="no"/>
+                                      </object>
+                                    </child>
+                                    <child>
+                                      <object class="GtkMenuItem" id="reg_tipo_contratos">
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">False</property>
+                                        <property name="label" translatable="yes">Tipos de Contratos</property>
+                                        <property name="use_underline">True</property>
+                                        <signal name="activate" handler="on_reg_tipo_contratos_activate" swapped="no"/>
+                                      </object>
+                                    </child>
+                                    <child>
+                                      <object class="GtkMenuItem" id="reg_tipo_parentescos">
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">False</property>
+                                        <property name="label" translatable="yes">Tipos de Parentescos</property>
+                                        <property name="use_underline">True</property>
+                                        <signal name="activate" handler="on_reg_tipo_parentescos_activate" swapped="no"/>
+                                      </object>
+                                    </child>
+                                    <child>
+                                      <object class="GtkMenuItem" id="reg_tipo_salarios">
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">False</property>
+                                        <property name="label" translatable="yes">Tipos de Salarios</property>
+                                        <property name="use_underline">True</property>
+                                        <signal name="activate" handler="on_reg_tipo_salarios_activate" swapped="no"/>
+                                      </object>
+                                    </child>
+                                    <child>
+                                      <object class="GtkMenuItem" id="reg_tipo_seguros">
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">False</property>
+                                        <property name="label" translatable="yes">Tipos de Seguros</property>
+                                        <property name="use_underline">True</property>
+                                        <signal name="activate" handler="on_reg_tipo_seguros_activate" swapped="no"/>
+                                      </object>
+                                    </child>
+                                    <child>
+                                      <object class="GtkMenuItem" id="reg_turnos_trabajo">
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">False</property>
+                                        <property name="label" translatable="yes">Turnos de Trabajo</property>
+                                        <property name="use_underline">True</property>
+                                        <signal name="activate" handler="on_reg_turnos_trabajo_activate" swapped="no"/>
+                                      </object>
+                                    </child>
+                                  </object>
+                                </child>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkMenuItem" id="menu_reg_movimientos">
+                                <property name="visible">True</property>
+                                <property name="can_focus">False</property>
+                                <property name="label" translatable="yes">Movimientos</property>
+                                <property name="use_underline">True</property>
+                                <child type="submenu">
+                                  <object class="GtkMenu" id="menu18">
+                                    <property name="visible">True</property>
+                                    <property name="can_focus">False</property>
+                                    <child>
+                                      <object class="GtkMenuItem" id="reg_dias_no_habiles">
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">False</property>
+                                        <property name="label" translatable="yes">Días No Hábiles</property>
+                                        <property name="use_underline">True</property>
+                                        <signal name="activate" handler="on_reg_dias_no_habiles_activate" swapped="no"/>
+                                      </object>
+                                    </child>
+                                    <child>
+                                      <object class="GtkSeparatorMenuItem" id="separador_reg_4">
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">False</property>
+                                      </object>
+                                    </child>
+                                    <child>
+                                      <object class="GtkMenuItem" id="reg_concepto_salarios">
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">False</property>
+                                        <property name="label" translatable="yes">Conceptos de Pago de Salarios</property>
+                                        <property name="use_underline">True</property>
+                                        <signal name="activate" handler="on_reg_concepto_salarios_activate" swapped="no"/>
+                                      </object>
+                                    </child>
+                                    <child>
+                                      <object class="GtkMenuItem" id="reg_motivo_descuentos">
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">False</property>
+                                        <property name="label" translatable="yes">Motivos de Descuentos</property>
+                                        <property name="use_underline">True</property>
+                                        <signal name="activate" handler="on_reg_motivo_descuentos_activate" swapped="no"/>
+                                      </object>
+                                    </child>
+                                    <child>
+                                      <object class="GtkMenuItem" id="reg_motivo_gratificaciones">
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">False</property>
+                                        <property name="label" translatable="yes">Motivos de Gratificaciones</property>
+                                        <property name="use_underline">True</property>
+                                        <signal name="activate" handler="on_reg_motivo_gratificaciones_activate" swapped="no"/>
+                                      </object>
+                                    </child>
+                                    <child>
+                                      <object class="GtkMenuItem" id="reg_motivo_permisos">
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">False</property>
+                                        <property name="label" translatable="yes">Motivos de Permisos</property>
+                                        <property name="use_underline">True</property>
+                                        <signal name="activate" handler="on_reg_motivo_permisos_activate" swapped="no"/>
+                                      </object>
+                                    </child>
+                                    <child>
+                                      <object class="GtkMenuItem" id="reg_motivo_salidas">
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">False</property>
+                                        <property name="label" translatable="yes">Motivos de Salidas</property>
+                                        <property name="use_underline">True</property>
+                                        <signal name="activate" handler="on_reg_motivo_salidas_activate" swapped="no"/>
+                                      </object>
+                                    </child>
+                                    <child>
+                                      <object class="GtkMenuItem" id="reg_motivo_sanciones">
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">False</property>
+                                        <property name="label" translatable="yes">Motivos de Sanciones</property>
+                                        <property name="use_underline">True</property>
+                                        <signal name="activate" handler="on_reg_motivo_sanciones_activate" swapped="no"/>
+                                      </object>
+                                    </child>
+                                    <child>
+                                      <object class="GtkMenuItem" id="reg_tipo_juzgados">
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">False</property>
+                                        <property name="label" translatable="yes">Tipos de Juzgados</property>
+                                        <property name="use_underline">True</property>
+                                        <signal name="activate" handler="on_reg_tipo_juzgados_activate" swapped="no"/>
+                                      </object>
+                                    </child>
+                                    <child>
+                                      <object class="GtkMenuItem" id="reg_turnos_juzgado">
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">False</property>
+                                        <property name="label" translatable="yes">Turnos de Juzgados</property>
+                                        <property name="use_underline">True</property>
+                                        <signal name="activate" handler="on_reg_turnos_juzgado_activate" swapped="no"/>
+                                      </object>
+                                    </child>
+                                  </object>
+                                </child>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkMenuItem" id="menu_reg_ventas">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="label" translatable="yes">Ventas</property>
+                        <property name="use_underline">True</property>
+                        <child type="submenu">
+                          <object class="GtkMenu" id="menu14">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <child>
+                              <object class="GtkMenuItem" id="menu_reg_cajas">
+                                <property name="visible">True</property>
+                                <property name="can_focus">False</property>
+                                <property name="label" translatable="yes">Cajas</property>
+                                <property name="use_underline">True</property>
+                                <child type="submenu">
+                                  <object class="GtkMenu" id="menu19">
+                                    <property name="visible">True</property>
+                                    <property name="can_focus">False</property>
+                                    <child>
+                                      <object class="GtkMenuItem" id="reg_establecimientos">
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">False</property>
+                                        <property name="label" translatable="yes">Establecimientos</property>
+                                        <property name="use_underline">True</property>
+                                        <signal name="activate" handler="on_reg_establecimientos_activate" swapped="no"/>
+                                      </object>
+                                    </child>
+                                    <child>
+                                      <object class="GtkMenuItem" id="reg_cajas">
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">False</property>
+                                        <property name="label" translatable="yes">Puntos de Expedición o Cajas</property>
+                                        <property name="use_underline">True</property>
+                                        <signal name="activate" handler="on_reg_cajas_activate" swapped="no"/>
+                                      </object>
+                                    </child>
+                                    <child>
+                                      <object class="GtkMenuItem" id="reg_timbrados">
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">False</property>
+                                        <property name="label" translatable="yes">Timbrados</property>
+                                        <property name="use_underline">True</property>
+                                        <signal name="activate" handler="on_reg_timbrados_activate" swapped="no"/>
+                                      </object>
+                                    </child>
+                                    <child>
+                                      <object class="GtkSeparatorMenuItem" id="separador_reg_5">
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">False</property>
+                                      </object>
+                                    </child>
+                                    <child>
+                                      <object class="GtkMenuItem" id="reg_denominaciones">
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">False</property>
+                                        <property name="label" translatable="yes">Denominaciones</property>
+                                        <property name="use_underline">True</property>
+                                        <signal name="activate" handler="on_reg_denominaciones_activate" swapped="no"/>
+                                      </object>
+                                    </child>
+                                    <child>
+                                      <object class="GtkMenuItem" id="reg_tipo_denominaciones">
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">False</property>
+                                        <property name="label" translatable="yes">Tipos de Denominaciones</property>
+                                        <property name="use_underline">True</property>
+                                        <signal name="activate" handler="on_reg_tipo_denominaciones_activate" swapped="no"/>
+                                      </object>
+                                    </child>
+                                    <child>
+                                      <object class="GtkMenuItem" id="reg_tipo_comerciales">
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">False</property>
+                                        <property name="label" translatable="yes">Tipos de Documentos Comerciales</property>
+                                        <property name="use_underline">True</property>
+                                        <signal name="activate" handler="on_reg_tipo_comerciales_activate" swapped="no"/>
+                                      </object>
+                                    </child>
+                                    <child>
+                                      <object class="GtkMenuItem" id="reg_tipo_valores">
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">False</property>
+                                        <property name="label" translatable="yes">Tipos de Valores</property>
+                                        <property name="use_underline">True</property>
+                                        <signal name="activate" handler="on_reg_tipo_valores_activate" swapped="no"/>
+                                      </object>
+                                    </child>
+                                  </object>
+                                </child>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkMenuItem" id="menu_reg_cobros">
+                                <property name="visible">True</property>
+                                <property name="can_focus">False</property>
+                                <property name="label" translatable="yes">Cobros</property>
+                                <property name="use_underline">True</property>
+                                <child type="submenu">
+                                  <object class="GtkMenu" id="menu20">
+                                    <property name="visible">True</property>
+                                    <property name="can_focus">False</property>
+                                    <child>
+                                      <object class="GtkMenuItem" id="reg_monedas">
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">False</property>
+                                        <property name="label" translatable="yes">Monedas</property>
+                                        <property name="use_underline">True</property>
+                                        <signal name="activate" handler="on_reg_monedas_activate" swapped="no"/>
+                                      </object>
+                                    </child>
+                                    <child>
+                                      <object class="GtkMenuItem" id="reg_cotizaciones">
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">False</property>
+                                        <property name="label" translatable="yes">Cotizaciones</property>
+                                        <property name="use_underline">True</property>
+                                        <signal name="activate" handler="on_reg_cotizaciones_activate" swapped="no"/>
+                                      </object>
+                                    </child>
+                                    <child>
+                                      <object class="GtkSeparatorMenuItem" id="separador_reg_6">
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">False</property>
+                                      </object>
+                                    </child>
+                                    <child>
+                                      <object class="GtkMenuItem" id="reg_concepto_recibos">
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">False</property>
+                                        <property name="label" translatable="yes">Conceptos de Cobros por Recibos</property>
+                                        <property name="use_underline">True</property>
+                                        <signal name="activate" handler="on_reg_concepto_recibos_activate" swapped="no"/>
+                                      </object>
+                                    </child>
+                                    <child>
+                                      <object class="GtkMenuItem" id="reg_marca_tarjetas">
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">False</property>
+                                        <property name="label" translatable="yes">Marcas de Tarjetas</property>
+                                        <property name="use_underline">True</property>
+                                        <signal name="activate" handler="on_reg_marca_tarjetas_activate" swapped="no"/>
+                                      </object>
+                                    </child>
+                                    <child>
+                                      <object class="GtkMenuItem" id="reg_tipo_cheques">
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">False</property>
+                                        <property name="label" translatable="yes">Tipos de Cheques</property>
+                                        <property name="use_underline">True</property>
+                                        <signal name="activate" handler="on_reg_tipo_cheques_activate" swapped="no"/>
+                                      </object>
+                                    </child>
+                                    <child>
+                                      <object class="GtkMenuItem" id="reg_tipo_facturas">
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">False</property>
+                                        <property name="label" translatable="yes">Tipos de Facturas</property>
+                                        <property name="use_underline">True</property>
+                                        <signal name="activate" handler="on_reg_tipo_facturas_activate" swapped="no"/>
+                                      </object>
+                                    </child>
+                                    <child>
+                                      <object class="GtkMenuItem" id="reg_tipo_tarjetas">
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">False</property>
+                                        <property name="label" translatable="yes">Tipos de Tarjetas</property>
+                                        <property name="use_underline">True</property>
+                                        <signal name="activate" handler="on_reg_tipo_tarjetas_activate" swapped="no"/>
+                                      </object>
+                                    </child>
+                                  </object>
+                                </child>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkMenuItem" id="menu_reg_remisiones">
+                                <property name="visible">True</property>
+                                <property name="can_focus">False</property>
+                                <property name="label" translatable="yes">Notas de Remisión</property>
+                                <property name="use_underline">True</property>
+                                <child type="submenu">
+                                  <object class="GtkMenu" id="menu21">
+                                    <property name="visible">True</property>
+                                    <property name="can_focus">False</property>
+                                    <child>
+                                      <object class="GtkMenuItem" id="reg_marca_vehiculos">
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">False</property>
+                                        <property name="label" translatable="yes">Marcas de Vehículos</property>
+                                        <property name="use_underline">True</property>
+                                        <signal name="activate" handler="on_reg_marca_vehiculos_activate" swapped="no"/>
+                                      </object>
+                                    </child>
+                                    <child>
+                                      <object class="GtkMenuItem" id="reg_motivo_traslados">
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">False</property>
+                                        <property name="label" translatable="yes">Motivos de Traslado</property>
+                                        <property name="use_underline">True</property>
+                                        <signal name="activate" handler="on_reg_motivo_traslados_activate" swapped="no"/>
+                                      </object>
+                                    </child>
+                                    <child>
+                                      <object class="GtkMenuItem" id="reg_vehiculos">
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">False</property>
+                                        <property name="label" translatable="yes">Vehículos</property>
+                                        <property name="use_underline">True</property>
+                                        <signal name="activate" handler="on_reg_vehiculos_activate" swapped="no"/>
+                                      </object>
+                                    </child>
+                                  </object>
+                                </child>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="GtkMenuItem" id="menu_informes">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="label" translatable="yes">Informes</property>
+                <property name="use_underline">True</property>
+                <child type="submenu">
+                  <object class="GtkMenu" id="menu6">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <child>
+                      <object class="GtkMenuItem" id="menu_info_recursos_humanos">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="label" translatable="yes">Recursos Humanos</property>
+                        <property name="use_underline">True</property>
+                        <child type="submenu">
+                          <object class="GtkMenu" id="menu22">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <child>
+                              <object class="GtkMenuItem" id="info_rrhh_asistencias">
+                                <property name="visible">True</property>
+                                <property name="can_focus">False</property>
+                                <property name="label" translatable="yes">Asistencias</property>
+                                <property name="use_underline">True</property>
+                                <signal name="activate" handler="on_info_rrhh_asistencias_activate" swapped="no"/>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkMenuItem" id="menu_info_compras">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="label" translatable="yes">Compras</property>
+                        <property name="use_underline">True</property>
+                        <child type="submenu">
+                          <object class="GtkMenu" id="menu23">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <child>
+                              <object class="GtkMenuItem" id="info_comp_facturas">
+                                <property name="visible">True</property>
+                                <property name="can_focus">False</property>
+                                <property name="label" translatable="yes">Facturas</property>
+                                <property name="use_underline">True</property>
+                                <signal name="activate" handler="on_info_comp_facturas_activate" swapped="no"/>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkMenuItem" id="info_comp_creditos">
+                                <property name="visible">True</property>
+                                <property name="can_focus">False</property>
+                                <property name="label" translatable="yes">Notas de Crédito</property>
+                                <property name="use_underline">True</property>
+                                <signal name="activate" handler="on_info_comp_creditos_activate" swapped="no"/>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkMenuItem" id="info_comp_debitos">
+                                <property name="visible">True</property>
+                                <property name="can_focus">False</property>
+                                <property name="label" translatable="yes">Notas de Débito</property>
+                                <property name="use_underline">True</property>
+                                <signal name="activate" handler="on_info_comp_debitos_activate" swapped="no"/>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkMenuItem" id="menu_info_ventas">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="label" translatable="yes">Ventas</property>
+                        <property name="use_underline">True</property>
+                        <child type="submenu">
+                          <object class="GtkMenu" id="menu24">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <child>
+                              <object class="GtkMenuItem" id="info_vent_facturas">
+                                <property name="visible">True</property>
+                                <property name="can_focus">False</property>
+                                <property name="label" translatable="yes">Facturas</property>
+                                <property name="use_underline">True</property>
+                                <signal name="activate" handler="on_info_vent_facturas_activate" swapped="no"/>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkMenuItem" id="info_vent_creditos">
+                                <property name="visible">True</property>
+                                <property name="can_focus">False</property>
+                                <property name="label" translatable="yes">Notas de Crédito</property>
+                                <property name="use_underline">True</property>
+                                <signal name="activate" handler="on_info_vent_creditos_activate" swapped="no"/>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkMenuItem" id="info_vent_debitos">
+                                <property name="visible">True</property>
+                                <property name="can_focus">False</property>
+                                <property name="label" translatable="yes">Notas de Débito</property>
+                                <property name="use_underline">True</property>
+                                <signal name="activate" handler="on_info_vent_debitos_activate" swapped="no"/>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="GtkMenuItem" id="menu_ayuda">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="label" translatable="yes">Ayuda</property>
+                <property name="use_underline">True</property>
+                <child type="submenu">
+                  <object class="GtkMenu" id="menu7">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <child>
+                      <object class="GtkMenuItem" id="help_manual">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="label" translatable="yes">Manual de Usuario</property>
+                        <property name="use_underline">True</property>
+                        <signal name="activate" handler="on_help_manual_activate" swapped="no"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkSeparatorMenuItem" id="separador_help_1">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkMenuItem" id="help_acerca">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="label" translatable="yes">Acerca de ...</property>
+                        <property name="use_underline">True</property>
+                        <signal name="activate" handler="on_help_acerca_activate" swapped="no"/>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+              </object>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">0</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkFixed" id="fixed">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+          </object>
+          <packing>
+            <property name="expand">True</property>
+            <property name="fill">True</property>
+            <property name="position">1</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkStatusbar" id="statusbar">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="spacing">2</property>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">2</property>
+          </packing>
+        </child>
+      </object>
+    </child>
+  </object>
+</interface>

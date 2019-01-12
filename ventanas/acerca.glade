@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <!-- interface-requires gtk+ 3.0 -->
+  <object class="GtkAboutDialog" id="aboutdialog">
+    <property name="can_focus">False</property>
+    <property name="border_width">5</property>
+    <property name="resizable">False</property>
+    <property name="window_position">center</property>
+    <property name="icon">Logo.png</property>
+    <property name="type_hint">dialog</property>
+    <property name="program_name">Distribuidora</property>
+    <property name="version">1.0</property>
+    <property name="copyright" translatable="yes">Universidad Tecnológica Intercontinental
+© 2014</property>
+    <property name="comments" translatable="yes">Sistema de Gestión de Recursos Humanos, Compras y Ventas</property>
+    <property name="authors">Edison Yamil Yinde García</property>
+    <property name="documenters">Edison Yamil Yinde García</property>
+    <property name="logo">Logo.png</property>
+    <child internal-child="vbox">
+      <object class="GtkBox" id="aboutdialog-vbox">
+        <property name="can_focus">False</property>
+        <property name="orientation">vertical</property>
+        <property name="spacing">2</property>
+        <child internal-child="action_area">
+          <object class="GtkButtonBox" id="aboutdialog-action_area">
+            <property name="can_focus">False</property>
+            <property name="layout_style">end</property>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="pack_type">end</property>
+            <property name="position">0</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkHSeparator" id="separador">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="padding">5</property>
+            <property name="position">2</property>
+          </packing>
+        </child>
+      </object>
+    </child>
+  </object>
+</interface>
